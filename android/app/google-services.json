@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "88693183180",
+    "project_id": "platzi-trips-app-10e75",
+    "storage_bucket": "platzi-trips-app-10e75.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88693183180:android:1b0a4a5244def91f67e869",
+        "android_client_info": {
+          "package_name": "com.practicakawaii.platzi_trips_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88693183180-t8deipt2hbeavm5kslmn0qlgf1ir3u0m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHj_5BXVctW6oLRiEz_LdGJY61FL493pA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88693183180-t8deipt2hbeavm5kslmn0qlgf1ir3u0m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
