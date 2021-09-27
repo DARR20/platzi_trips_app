@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/place/model/place.dart';
 import 'package:platzi_trips_app/place/repository/firebase_storage_repository.dart';
+import 'package:platzi_trips_app/place/ui/widgets/card_image.dart';
 import 'package:platzi_trips_app/user/model/user.dart' as Model;
 import 'package:platzi_trips_app/user/repository/auth_repository.dart';
 import 'package:platzi_trips_app/user/repository/cloud_firestore_api.dart';
@@ -44,8 +45,19 @@ class UserBloc implements Bloc {
       .snapshots();
   Stream<QuerySnapshot> get placesStream => placesListStream;
 
-  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) =>
+  List<CardImage> buildPlaces(List<DocumentSnapshot> placesListSnapshot) =>
       _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
+
+  List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> placesListSnapshot) =>
+      _cloudFirestoreRepository.buildMyPlaces(placesListSnapshot);
+
+  Stream<QuerySnapshot> myPlacesListStream(String uid) => FirebaseFirestore
+      .instance
+      .collection(CloudFirestoreAPI().PLACES)
+      .where('userOwner',
+          isEqualTo: FirebaseFirestore.instance
+              .doc('${CloudFirestoreAPI().USERS}/${uid}'))
+      .snapshots();
 
   final _firebaseStorageRepository = FirebaseStorageRepository();
 

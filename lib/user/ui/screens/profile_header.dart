@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/user/bloc/bloc_user.dart';
-import 'package:platzi_trips_app/user/model/user.dart';
+import 'package:platzi_trips_app/user/model/user.dart' as Model;
 import 'package:platzi_trips_app/user/ui/widgets/user_info.dart';
 import 'package:platzi_trips_app/user/ui/widgets/button_bar.dart';
 
 class ProfileHeader extends StatelessWidget {
   //
-  UserBloc userBloc;
-  User user;
+  //UserBloc userBloc;
+  Model.User user;
+
+  ProfileHeader({@required this.user});
 
   @override
   Widget build(BuildContext context) {
     //
-    userBloc = BlocProvider.of<UserBloc>(context);
+    /*userBloc = BlocProvider.of<UserBloc>(context);
 
     return StreamBuilder(
       stream: userBloc.streamFirebase,
@@ -30,9 +32,9 @@ class ProfileHeader extends StatelessWidget {
             return showProfileData(snapshot);
         }
       },
-    );
+    );*/
 
-    /*final title = Text(
+    final title = Text(
       'Profile',
       style: TextStyle(
           fontFamily: 'Lato',
@@ -48,11 +50,11 @@ class ProfileHeader extends StatelessWidget {
           Row(
             children: <Widget>[title],
           ),
-          UserInfo('assets/img/ann.jpg', 'Anahí Salgado', 'anahi@platzi.com'),
+          UserInfo(user),
           ButtonsBar()
         ],
       ),
-    );*/
+    );
   }
 
   Widget showProfileData(AsyncSnapshot snapshot) {
@@ -69,7 +71,8 @@ class ProfileHeader extends StatelessWidget {
       );
     } else {
       print('Logeado');
-      user = User(
+      user = Model.User(
+        uid: snapshot.data.uid,
         name: snapshot.data.displayName,
         email: snapshot.data.email,
         photoURL: snapshot.data.photoURL,

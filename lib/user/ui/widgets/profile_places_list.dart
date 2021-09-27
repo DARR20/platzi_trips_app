@@ -3,10 +3,13 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_app/user/bloc/bloc_user.dart';
 
 import 'package:platzi_trips_app/place/model/place.dart';
+import 'package:platzi_trips_app/user/model/user.dart' as Model;
 
 class ProfilePlacesList extends StatelessWidget {
   //
   UserBloc userBloc;
+  Model.User user;
+  ProfilePlacesList({@required this.user});
 
   Place place = Place(
       name: "Knuckles Mountains Range",
@@ -31,7 +34,8 @@ class ProfilePlacesList extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0, bottom: 10.0),
       child: StreamBuilder(
-        stream: userBloc.placesStream,
+        //stream: userBloc.placesStream,
+        stream: userBloc.myPlacesListStream(user.uid),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
@@ -39,12 +43,12 @@ class ProfilePlacesList extends StatelessWidget {
 
             case ConnectionState.done:
               return Column(
-                children: userBloc.buildPlaces(snapshot.data.docs),
+                children: userBloc.buildMyPlaces(snapshot.data.docs),
               );
 
             case ConnectionState.active:
               return Column(
-                children: userBloc.buildPlaces(snapshot.data.docs),
+                children: userBloc.buildMyPlaces(snapshot.data.docs),
               );
 
             case ConnectionState.none:

@@ -91,7 +91,8 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                   //Foto
                   alignment: Alignment.center,
                   child: CardImage(
-                    pathImage: widget.image?.path ?? "assets/img/noImage.jpg",
+                    pathImage: widget.image?.path ??
+                        "https://www.segelectrica.com.co/wp-content/themes/consultix/images/no-image-found-360x250.png",
                     iconData: Icons.camera_alt,
                     height: 200.0,
                     width: 350.0,
